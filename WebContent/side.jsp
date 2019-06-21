@@ -5,7 +5,7 @@
               <div class="row">
                 <div>
                      <li>
-                      <a href="#">Music Rythm Generate</a>
+                      <a href="genmelodya.jsp">Generate Music Sheet from MIDI</a>
                     </li>
                 </div>
               </div>

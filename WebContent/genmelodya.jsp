@@ -8,7 +8,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Generate new meldoy from your midi file using ai tensorflow">
+    <meta name="description" content="Generate music sheet music score from midi file">
     <meta name="keywords" content=" ">
     <meta name="author" content="Anish nath">
     <meta name="robots" content="index,follow" />
@@ -17,7 +17,7 @@
 	<meta name="classification" content="tools" />
 	<meta name="language" content="en" />
 
-    <title>Generate new melody</title>
+    <title>Generate music sheet music score from midi file</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,25 +39,25 @@
   "@type" : "Article",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://8gwifi.org/docs/kube-nginx.jsp"
+    "@id": "http://notemusic.site/genmelodya.jsp"
   },
-  "name" : "Deploying Secure HTTPS NGINX in Kubernetes",
+  "name" : "Generate Music Sheet from MIDI file",
   "author" : {
     "@type" : "Person",
     "name" : "Anish"
   },
-  "headline": "Deploying Secure HTTPS NGINX in Kubernetes",
-  "image":"https://8gwifi.org/docs/img/kube-nginx.png",
-  "datePublished" : "2018-08-15",
-  "dateModified": "2018-08-15",
-  "articleSection" : "Deploying Secure HTTPS NGINX in Kubernetes",
-  "articleBody" : [ "Definition of Modern TLS","nginx certs and Keys","kubernetes Create Secrets", "kubernetes View Secrets", "Modern TLS nginx configuration", "inotifywait" ,"ConfigMaps","nginx-app.yaml" , "kubectl get service nginxsvc"],
+  "headline": "Generate Music Sheet from MIDI file",
+  "image":"http://notemusic.site/images/1.png",
+  "datePublished" : "2019-06-21",
+  "dateModified": "2019-06-21",
+  "articleSection" : "Generate Music Sheet from MIDI file",
+  "articleBody" : [ "Generate Music Sheet from MIDI file"],
   "publisher" : {
     "@type" : "Organization",
     "name" : "8gwifi.org Tech Blog",
     "logo" :  {
       "@type": "ImageObject",
-      "url": "https://8gwifi.org/docs/img/logo.jpg"
+      "url": "http://notemusic.site/genmelodya.jsp"
     }
   }
 }
@@ -90,7 +90,7 @@
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h1 class="mt-4">Create new Melody </h1>
+          <h1 class="mt-4">Generate Music Sheet from Midi File</h1>
           
           <%
           
@@ -146,10 +146,10 @@
 				String base64PNG = sheetpngIterator.next();
 				i++;
 				%>		
-				<h3>Your Meldoy Music Sheet PAGE-<%=i %> </h3>
+				<h5>Your Meldoy Music Sheet PAGE-<%=i %> </h5>
 				<div class="embed-responsive embed-responsive-4by3">
 				
-				<iframe width="100" height="100" src="images/user/generated/midi_upload/<%=request.getSession().getId() %>/<%=base64PNG%>"></iframe>
+				<iframe width="100" height="100" src="images/midi_upload/<%=request.getSession().getId() %>/<%=base64PNG%>"></iframe>
 </div>
 				
 		<% 	}
