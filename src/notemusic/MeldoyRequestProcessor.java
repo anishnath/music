@@ -172,7 +172,7 @@ public class MeldoyRequestProcessor {
 		
 
 		
-		String melody_rnn = "/usr/local/bin/docker exec notemusiclib melody_rnn_generate --config=basic_rnn --bundle_file=/opt/melody_rnn/basic_rnn.mag --output_dir="+containerDirectoty+"/newmidi --num_outputs=2 --num_steps=400 --primer_midi="+containerfileName;
+		String melody_rnn = "/usr/bin/docker exec notemusiclib melody_rnn_generate --config=basic_rnn --bundle_file=/opt/melody_rnn/basic_rnn.mag --output_dir="+containerDirectoty+"/newmidi --num_outputs=2 --num_steps=400 --primer_midi="+containerfileName;
 		
 		
 		System.out.println(melody_rnn);
@@ -186,22 +186,22 @@ public class MeldoyRequestProcessor {
 			command.add(arr[i]);
 		}
 
-		doCommand(command);
+		//doCommand(command);
 		
-		String genuserDirectory = userDirectory+"/newmidi";
+		//String genuserDirectory = userDirectory+"/newmidi";
 		
-		System.out.println("genuserDirectory -- > " + genuserDirectory);
-		files = new File(genuserDirectory).listFiles();
+		//System.out.println("genuserDirectory -- > " + genuserDirectory);
+		//files = new File(genuserDirectory).listFiles();
 
-		for (File t : files) {
-			System.out.println(t.getName());
-			if (t.isFile()) {
+		//for (File t : files) {
+		//	System.out.println(t.getName());
+		//	if (t.isFile()) {
 
 				
 				
-			}
+		//	}
 
-		}
+		//}
 
 		
 		

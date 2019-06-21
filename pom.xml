@@ -4,6 +4,8 @@
   <artifactId>notemusic</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+
+
   <dependencies>
   <dependency>
   <groupId>commons-fileupload</groupId>
@@ -16,9 +18,26 @@
     <artifactId>commons-codec</artifactId>
     <version>1.9</version>
 </dependency>
+<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
+     <resources>
+        <resource>
+            <directory>src</directory>
+            <includes>
+                <include>**</include>
+            </includes>
+            <excludes>
+                <exclude>**/*.java</exclude>
+            </excludes>
+        </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -37,5 +56,6 @@
         </configuration>
       </plugin>
     </plugins>
+   <finalName>ROOT</finalName>
   </build>
 </project>
