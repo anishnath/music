@@ -63,6 +63,8 @@
 }
 </script>
 
+<%@ include file="analytics.jsp"%>
+
 
 
 
