@@ -104,11 +104,11 @@
         <div class="card h-100">
           <img class="card-img-top" src="images/2.png" alt="">
           <div class="card-body">
-            <h4 class="card-title">Find new Music Score from your Midi File</h4>
-            <p class="card-text">generate music scores from your Midi files through our Midi to Sheet Music Online converter and find the alternative music score</p>
+            <h4 class="card-title">Parse a MIDI File</h4>
+            <p class="card-text">Convert MIDI file to list of notes with length and starting time</p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="parsemidi.jsp" class="btn btn-primary">Find Out More!</a>
           </div>
         </div>
       </div>

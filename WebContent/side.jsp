@@ -7,6 +7,9 @@
                      <li>
                       <a href="genmelodya.jsp">Generate Music Sheet from MIDI</a>
                     </li>
+                    <li>
+                      <a href="parsemidi.jsp">Parse MIDI file JSON</a>
+                    </li>
                 </div>
               </div>
             </div>
