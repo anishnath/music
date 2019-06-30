@@ -127,7 +127,7 @@
           
 
 				<form action="GenerateMelody" method="post" enctype="multipart/form-data">
-					<label for="uploadMidi">Upload Your Midi File and Find new Melody</label>
+					<label for="uploadMidi">Upload Your Midi File to find the Music Score</label>
 					<div class="form-group">
 						<input type="file" class="form-control-file" name="file" id="file"> 
 						<input type="submit"class="btn btn-primary"  value="upload">
