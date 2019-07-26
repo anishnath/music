@@ -54,7 +54,7 @@
   "articleBody" : [ "Generate Music Sheet from MIDI file"],
   "publisher" : {
     "@type" : "Organization",
-    "name" : "8gwifi.org Tech Blog",
+    "name" : "notemusic.site",
     "logo" :  {
       "@type": "ImageObject",
       "url": "http://notemusic.site/genmelodya.jsp"
