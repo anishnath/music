@@ -5,7 +5,10 @@
               <div class="row">
                 <div>
                      <li>
-                      <a href="genmelodya.jsp">Generate Music Sheet from MIDI</a>
+                      <a href="genmelodya.jsp">Generate Music Score from MIDI</a>
+                    </li>
+                    <li>
+                      <a href="genmelodyc.jsp">Generate new Music from Chords Pitches</a>
                     </li>
                     <li>
                       <a href="parsemidi.jsp">Parse MIDI file JSON</a>

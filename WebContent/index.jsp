@@ -91,7 +91,7 @@
         <div class="card h-100">
           <img class="card-img-top" src="images/1.png" alt="">
           <div class="card-body">
-            <h4 class="card-title">Midi to Music Sheet</h4>
+            <h4 class="card-title">Midi to Music Score</h4>
             <p class="card-text">Music score is great way of learning and studying music, if you have midi file neeed to know the score, this is for you </p>
           </div>
           <div class="card-footer">

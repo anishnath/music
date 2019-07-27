@@ -98,7 +98,7 @@
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h2 class="mt-4">Generate/Find new chords and view the music score</h2>
+          <h2 class="mt-4">Generate/Find new chords pitches and view the music score</h2>
           
 
 	
