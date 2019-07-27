@@ -115,13 +115,13 @@
 
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <img class="card-img-top" src="images/3.png" alt="">
           <div class="card-body">
-            <h4 class="card-title">Find new Melody</h4>
-            <p class="card-text">Upload your Midi and let's AI generate new sequence</p>
+            <h4 class="card-title">Generate Chords/Note Sequence</h4>
+            <p class="card-text">Generate chord play with note sequence and check their score</p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">COMING SOON</a>
+            <a href="genmelodyc.jsp" class="btn btn-primary">Find Out More!</a>
           </div>
         </div>
       </div>
