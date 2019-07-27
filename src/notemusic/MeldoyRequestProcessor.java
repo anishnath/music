@@ -154,7 +154,7 @@ public class MeldoyRequestProcessor {
 
 				if (t.getName().endsWith("png")) {
 
-					System.out.println(t.getAbsolutePath());
+					System.out.println("PNG File--> "+ t.getAbsolutePath());
 
 					this.sheetJPG.add(t.getName());
 
