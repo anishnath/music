@@ -431,7 +431,7 @@
 
     // Initialize model then start playing.
     model.initialize().then(() => {
-      document.getElementById('message').innerText = 'Loaded...'
+      document.getElementById('message').innerText = 'Model Loaded Hit the Play Button'
       document.getElementById('play').disabled = false;
     });
 
