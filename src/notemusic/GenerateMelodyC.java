@@ -235,7 +235,7 @@ public class GenerateMelodyC extends HttpServlet {
 					System.out.println("string  " + string);
 					//<iframe width="100" height="100" src="images/midi_upload/<%=request.getSession().getId() %>/<%=base64PNG%>"></iframe>
 					
-					String docker_vol = prop.getProperty("docker_volume");
+					String docker_vol = prop.getProperty("docker_volume_container");
 					
 					String actualPath = docker_vol + "/midi_upload/" + request.getSession().getId() + "/" + string;
 					
@@ -251,7 +251,7 @@ public class GenerateMelodyC extends HttpServlet {
 					
 					String s = "<img class=\"img-fluid\" src=\"data:image/jpeg;base64,"+base64+"\">";
 					
-					System.out.println(s);
+					//System.out.println(s);
 					
 					out.println(s);
 					
@@ -273,9 +273,7 @@ public class GenerateMelodyC extends HttpServlet {
 
 		}
 
-		System.out.println("Sixe-- " + meldoyRequestProcessor.getSheetJPG().size());
 
-		System.out.println("Sixety-- " + meldoyRequestProcessor.getSheetJPG().size());
 
 		if (error) {
 			response.setContentType("text/html");

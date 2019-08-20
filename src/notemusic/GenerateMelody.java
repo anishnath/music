@@ -1,10 +1,13 @@
 package notemusic;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -79,6 +82,7 @@ public class GenerateMelody extends HttpServlet {
 		Properties prop = (Properties)request.getServletContext().getAttribute("properties");
 		
 		System.out.println("Second--->" + prop.getProperty("docker_volume"));
+		PrintWriter out = response.getWriter();
 
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
@@ -86,7 +90,7 @@ public class GenerateMelody extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("sheetspng", null);
 			session.setAttribute("msg", null);
-			PrintWriter out = response.getWriter();
+			
 
 			Map<String, Object> requestParameter = new HashMap<String, Object>();
 			
@@ -132,7 +136,6 @@ public class GenerateMelody extends HttpServlet {
 
 						}
 						
-						System.out.println("contentType-->" +contentType);
 						
 						if(contentType!=null && contentType.equals("audio/midi"))
 						{
@@ -168,9 +171,37 @@ public class GenerateMelody extends HttpServlet {
 	                            	
 	                            	List<String> ls =  (List)map.get("sheetspng");
 	                            	
-	                            	session.setAttribute("sheetspng", ls);
-	                            	
-	                            	response.sendRedirect("genmelodya.jsp");
+	                            	for (Iterator iterator = ls.iterator(); iterator.hasNext();) {
+	                					String string = (String) iterator.next();
+
+	                					//System.out.println("string  " + string);
+	                					//<iframe width="100" height="100" src="images/midi_upload/<%=request.getSession().getId() %>/<%=base64PNG%>"></iframe>
+	                					
+	                					String docker_vol = prop.getProperty("docker_volume_container");
+	                					
+	                					String actualPath = docker_vol + "/midi_upload/" + request.getSession().getId() + "/" + string;
+	                					
+	                					//System.out.println("actualPath -- > " +actualPath);
+	                					
+	                					
+	                					
+	                					
+	                					
+	                					byte[] b = loadFileAsBytesArray(actualPath);
+	                					
+	                					String base64= Base64.getEncoder().encodeToString(b);
+	                					
+	                					String s = "<img class=\"img-fluid\" src=\"data:image/jpeg;base64,"+base64+"\">";
+	                					
+	                					//System.out.println(s);
+	                					
+	                					out.println(s);
+	                					
+	                					
+	                					
+	                					
+
+	                				}
 	                				return;
 	                            	
 	                            	
@@ -185,9 +216,9 @@ public class GenerateMelody extends HttpServlet {
 	                        	
 	                        }
 					        
-					        System.out.println("Sixe-- " +meldoyRequestProcessor.getSheetJPG().size());
+					        //System.out.println("Sixe-- " +meldoyRequestProcessor.getSheetJPG().size());
 					        
-					        System.out.println("Sixety-- " +meldoyRequestProcessor.getSheetJPG().size());
+					        //System.out.println("Sixety-- " +meldoyRequestProcessor.getSheetJPG().size());
 					        
 					        
 					        
@@ -219,10 +250,7 @@ public class GenerateMelody extends HttpServlet {
 			if (error) {
 				response.setContentType("text/html");
 				// out.println("");
-				session.setAttribute("msg", "<font size=\"2\" color=\"red\"> " + strbg.toString() + " </font>");
-				// out.println("<font size=\"2\" color=\"red\"> " +
-				// strbg.toString()+" </font>");
-				response.sendRedirect("genmelodya.jsp");
+				out.println("<font size=\"2\" color=\"red\"> " + strbg.toString() + " </font>");
 				return;
 			}
 			
@@ -249,4 +277,16 @@ public class GenerateMelody extends HttpServlet {
 		factory.setFileCleaningTracker(tracker);
 		return factory;
 	}
+	
+	public static byte[] loadFileAsBytesArray(String fileName) throws Exception {
+		 
+        File file = new File(fileName);
+        int length = (int) file.length();
+        BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
+        byte[] bytes = new byte[length];
+        reader.read(bytes, 0, length);
+        reader.close();
+        return bytes;
+ 
+    }
 }

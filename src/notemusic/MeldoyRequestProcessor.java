@@ -71,33 +71,31 @@ public class MeldoyRequestProcessor {
 		System.out.println(item.toString());
 		System.out.println("dirName -> " + dirName);
 
-		String dockerVol = prop.getProperty("docker_volume", "/opt");
+		//String dockerVol = prop.getProperty("docker_volume", "/opt");
 		String docker_volume_container = prop.getProperty("docker_volume_container", "/opt");
-		String web_inf_user_images = prop.getProperty("web_inf_user_images", "/opt");
-		String web_inf_user_mid = prop.getProperty("web_inf_user_mid", "/opt");
+		
 
 		String sheetCMD = (String) prop.get("sheet");
-		String magentaCMD = (String) prop.get("magenta");
+		//String magentaCMD = (String) prop.get("magenta");
 
 		String path = System.getProperty("java.io.tmpdir");
 
 		System.out.println("Path -- >>" + path);
 
-		System.out.println("dockerVol-- >>" + dockerVol);
+		//System.out.println("dockerVol-- >>" + dockerVol);
 		System.out.println("docker_volume_container-- >>" + docker_volume_container);
-		System.out.println("web_inf_user_images-- >>" + web_inf_user_images);
-		System.out.println("web_inf_user_mid-- >>" + web_inf_user_mid);
+
 		System.out.println("sheetCMD-- >>" + sheetCMD);
-		System.out.println("magentaCMD-- >>" + magentaCMD);
+		//System.out.println("magentaCMD-- >>" + magentaCMD);
 
-		String sheetName = item.getName().substring(0, item.getName().lastIndexOf("."));
+		String sheetName = "tmp"; // The Image file Name
 
-		String userDirectory = dockerVol + "/midi_upload/" + dirName;
+		//String userDirectory = dockerVol + "/midi_upload/" + dirName;
 		String containerDirectoty = docker_volume_container + "/midi_upload/" + dirName;
 
-		System.out.println("userDirectory -- " + userDirectory);
+		System.out.println("userDirectory -- " + containerDirectoty);
 
-		File file = new File(userDirectory);
+		File file = new File(containerDirectoty);
 		if (!file.exists()) {
 			if (file.mkdirs()) {
 				System.out.println("Directory is created!");
@@ -107,21 +105,21 @@ public class MeldoyRequestProcessor {
 		}
 
 		try {
-			FileUtils.cleanDirectory(new File(userDirectory));
+			FileUtils.cleanDirectory(new File(containerDirectoty));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		String absolutefileName = userDirectory + "/" + item.getName();
+
 		String containerfileName = containerDirectoty + "/" + item.getName();
 		String sheetPart = containerDirectoty + "/" + sheetName;
 
-		System.out.println("absolutefileName -- " + absolutefileName);
+
 		System.out.println("containerfileName -- " + containerfileName);
 		System.out.println("sheetPart -- " + sheetPart);
 
-		File f = new File(absolutefileName);
+		File f = new File(containerfileName);
 		try {
 			FileUtils.copyInputStreamToFile(item.getInputStream(), f);
 		} catch (IOException e) {
@@ -145,8 +143,8 @@ public class MeldoyRequestProcessor {
 
 		doCommand(command);
 
-		System.out.println("userDirectory -- > " + userDirectory);
-		File[] files = new File(userDirectory).listFiles();
+		//System.out.println("userDirectory -- > " + containerDirectoty);
+		File[] files = new File(containerDirectoty).listFiles();
 
 		for (File t : files) {
 			System.out.println(t.getName());
@@ -154,13 +152,13 @@ public class MeldoyRequestProcessor {
 
 				if (t.getName().endsWith("png")) {
 
-					System.out.println("PNG File--> "+ t.getAbsolutePath());
+					//System.out.println("PNG File--> "+ t.getAbsolutePath());
 
 					this.sheetJPG.add(t.getName());
 
 				}
 
-				System.out.println(t.getName());
+				//System.out.println(t.getName());
 			}
 
 		}
@@ -172,36 +170,36 @@ public class MeldoyRequestProcessor {
 		
 
 		
-		String melody_rnn = "/usr/bin/docker exec notemusiclib melody_rnn_generate --config=basic_rnn --bundle_file=/opt/melody_rnn/basic_rnn.mag --output_dir="+containerDirectoty+"/newmidi --num_outputs=2 --num_steps=400 --primer_midi="+containerfileName;
-		
-		
-		System.out.println(melody_rnn);
-		
-		 arr = melody_rnn.split(" ");
-
-		command = new ArrayList<>();
-
-		for (int i = 0; i < arr.length; i++) {
-			System.out.println(arr[i]);
-			command.add(arr[i]);
-		}
-
-		//doCommand(command);
-		
-		//String genuserDirectory = userDirectory+"/newmidi";
-		
-		//System.out.println("genuserDirectory -- > " + genuserDirectory);
-		//files = new File(genuserDirectory).listFiles();
-
-		//for (File t : files) {
-		//	System.out.println(t.getName());
-		//	if (t.isFile()) {
-
-				
-				
-		//	}
-
-		//}
+//		String melody_rnn = "/usr/bin/docker exec notemusiclib melody_rnn_generate --config=basic_rnn --bundle_file=/opt/melody_rnn/basic_rnn.mag --output_dir="+containerDirectoty+"/newmidi --num_outputs=2 --num_steps=400 --primer_midi="+containerfileName;
+//		
+//		
+//		System.out.println(melody_rnn);
+//		
+//		 arr = melody_rnn.split(" ");
+//
+//		command = new ArrayList<>();
+//
+//		for (int i = 0; i < arr.length; i++) {
+//			System.out.println(arr[i]);
+//			command.add(arr[i]);
+//		}
+//
+//		//doCommand(command);
+//		
+//		//String genuserDirectory = userDirectory+"/newmidi";
+//		
+//		//System.out.println("genuserDirectory -- > " + genuserDirectory);
+//		//files = new File(genuserDirectory).listFiles();
+//
+//		//for (File t : files) {
+//		//	System.out.println(t.getName());
+//		//	if (t.isFile()) {
+//
+//				
+//				
+//		//	}
+//
+//		//}
 
 		
 		

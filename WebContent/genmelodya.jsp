@@ -21,6 +21,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    
 
     <!-- Custom styles for this template -->
     <link href="css/blog-post.css" rel="stylesheet">
@@ -63,6 +65,48 @@
 }
 </script>
 
+<script>
+$(document).ready(function () {
+
+    $("#btnSubmit").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        // Get form
+        var form = $('#fileUploadForm')[0];
+
+		// Create an FormData object 
+        var data = new FormData(form);
+
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "GenerateMelody",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success : function(msg) {
+				$('#output').empty();
+				$('#output').append(msg);
+
+			},
+            error: function (e) {
+
+                $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+
+            }
+        });
+
+    });
+
+});
+</script>
+
 <%@ include file="analytics.jsp"%>
 
 
@@ -94,72 +138,29 @@
           <!-- Title -->
           <h1 class="mt-4">Generate Music Sheet from Midi File</h1>
           
-          <%
-          
-          String progress = (String)request.getSession().getAttribute("progress");
-          
-          if(progress!=null)
-          {
-          
-          System.out.println(progress);
-          }
-          
-          %>
-          
-          <div id="output">
-
-	<%
-
-		String value =(String)session.getAttribute("msg");
-		if(null==value)
-		{
-			value="";
-		}
-
-	%>
-
-	<%=value%>
-
-
-
-
-</div>
+         
           
 
-				<form action="GenerateMelody" method="post" enctype="multipart/form-data">
+				<form id="fileUploadForm" method="post" enctype="multipart/form-data">
 					<label for="uploadMidi">Upload Your Midi File to find the Music Score</label>
 					<div class="form-group">
 						<input type="file" class="form-control-file" name="file" id="file"> 
-						<input type="submit"class="btn btn-primary"  value="upload">
+						<input type="submit"class="btn btn-primary" id="btnSubmit" value="upload">
 					</div>
 				</form>
 				
 		
-		<%
-		
-		List sheetpng =(List)session.getAttribute("sheetspng");
-		if(sheetpng!=null && sheetpng.size()>0)
-		{
-			
-			Iterator<String> sheetpngIterator = sheetpng.iterator();
-			int i=0;
-			while (sheetpngIterator.hasNext()) {
-				
-				String base64PNG = sheetpngIterator.next();
-				i++;
-				%>		
-				<h5>Your Meldoy Music Sheet PAGE-<%=i %> </h5>
-				<div class="embed-responsive embed-responsive-4by3">
-				
-				<iframe width="100" height="100" src="images/midi_upload/<%=request.getSession().getId() %>/<%=base64PNG%>"></iframe>
+
+
+          
+          <div id="output">
+
+
+
+
+
+
 </div>
-				
-		<% 	}
-			
-		}
-							
-		
-		%>		
 				
 				
 				
